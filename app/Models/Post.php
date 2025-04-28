@@ -14,10 +14,16 @@ class Post extends Model
         'excerpt',
         'body',
         'user_id',
+        'category_id',
     ];
 
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
