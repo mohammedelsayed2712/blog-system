@@ -21,6 +21,10 @@ class DatabaseSeeder extends Seeder
 
         $array = [
             CategorySeeder::class,
+            PostSeeder::class,
+            CommentSeeder::class,
+            TagSeeder::class,
+            ImageSeeder::class,
         ];
 
         $this->call($array);
