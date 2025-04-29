@@ -7,12 +7,12 @@
             <div class="col-md-8 posts-col">
                 @foreach ($posts as $post)
                 <div class="block-21 d-flex animate-box post">
-                    <a href="#" class="blog-img" {{--
+                    <a href="{{ route('posts.show', $post) }}" class="blog-img" {{--
                         style="background-image: url({{ asset('storage/'.  $post->images->path) }});"></a>
                     --}}
                     style="background-image: url(assets/images/blog-1.jpg);"></a>
                     <div class="text">
-                        <h3 class="heading"><a href="#">{{ $post->title }}</a></h3>
+                        <h3 class="heading"><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></h3>
                         <p class="excerpt">{{ $post->excerpt }}</p>
                         <div class="meta">
                             <div><a class="date" href="#"><span class="icon-calendar"></span> {{
@@ -46,7 +46,7 @@
                         <h3 class="sidebar-heading">Recent Blog</h3>
                         @foreach ($recent_posts as $recent_post)
                         <div class="f-blog">
-                            <a href="blog.html" class="blog-img"
+                            <a href="{{ route('posts.show', $recent_post) }}" class="blog-img"
                                 style="background-image: url(assets/images/blog-1.jpg);">
                                 {{-- style="background-image: url({{ asset('storage/' .
                                 $recent_post->images->first()->path)
