@@ -7,7 +7,8 @@
             <div class="col-md-8 posts-col">
                 @foreach ($posts as $post)
                 <div class="block-21 d-flex animate-box post">
-                    <a href="#" class="blog-img" style="background-image: url(assets/images/blog-1.jpg);"></a>
+                    <a href="#" class="blog-img"
+                        style="background-image: url({{ asset('storage/'.  $post->images->path) }});"></a>
                     <div class="text">
                         <h3 class="heading"><a href="#">{{ $post->title }}</a></h3>
                         <p class="excerpt">{{ $post->excerpt }}</p>
@@ -22,81 +23,6 @@
                     </div>
                 </div>
                 @endforeach
-
-                {{-- <div class="block-21 d-flex animate-box">
-                    <a href="#" class="blog-img" style="background-image: url(assets/images/blog-2.jpg);"></a>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the
-                                blind texts</a></h3>
-                        <p>ven the all-powerful Pointing has no control about the blind texts it is an almost
-                        </p>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> May 29, 2018</a></div>
-                            <div><a href="#"><span class="icon-user2"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="block-21 d-flex animate-box">
-                    <a href="#" class="blog-img" style="background-image: url(assets/images/blog-3.jpg);"></a>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the
-                                blind texts</a></h3>
-                        <p>ven the all-powerful Pointing has no control about the blind texts it is an almost
-                        </p>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> May 29, 2018</a></div>
-                            <div><a href="#"><span class="icon-user2"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="block-21 d-flex animate-box">
-                    <a href="#" class="blog-img" style="background-image: url(assets/images/blog-4.jpg);"></a>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the
-                                blind texts</a></h3>
-                        <p>ven the all-powerful Pointing has no control about the blind texts it is an almost
-                        </p>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> May 29, 2018</a></div>
-                            <div><a href="#"><span class="icon-user2"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="block-21 d-flex animate-box">
-                    <a href="#" class="blog-img" style="background-image: url(assets/images/blog-5.jpg);"></a>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the
-                                blind texts</a></h3>
-                        <p>ven the all-powerful Pointing has no control about the blind texts it is an almost
-                        </p>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> May 29, 2018</a></div>
-                            <div><a href="#"><span class="icon-user2"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="block-21 d-flex animate-box">
-                    <a href="#" class="blog-img" style="background-image: url(assets/images/blog-6.jpg);"></a>
-                    <div class="text">
-                        <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the
-                                blind texts</a></h3>
-                        <p>ven the all-powerful Pointing has no control about the blind texts it is an almost
-                        </p>
-                        <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span> May 29, 2018</a></div>
-                            <div><a href="#"><span class="icon-user2"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
 
             <!-- SIDEBAR: start -->
@@ -119,36 +45,23 @@
                     </div>
                     <div class="side">
                         <h3 class="sidebar-heading">Recent Blog</h3>
+                        @foreach ($recent_posts as $recent_post)
                         <div class="f-blog">
                             <a href="blog.html" class="blog-img"
                                 style="background-image: url(assets/images/blog-1.jpg);">
+                                {{-- style="background-image: url({{ asset('storage/' .
+                                $recent_post->images->first()->path)
+                                }});"> --}}
                             </a>
                             <div class="desc">
-                                <p class="admin"><span>18 April 2018</span></p>
-                                <h2><a href="blog.html">Creating Mobile Apps</a></h2>
-                                <p>Far far away, behind the word mountains</p>
+                                <p class="admin"><span>{{ $recent_post->created_at->diffForHumans() }}</span></p>
+                                <h2><a href="blog.html">
+                                        {{ \Str::limit($recent_post->title, 20) }}
+                                    </a></h2>
+                                <p>{{ $recent_post->excerpt }}</p>
                             </div>
                         </div>
-                        <div class="f-blog">
-                            <a href="blog.html" class="blog-img"
-                                style="background-image: url(assets/images/blog-2.jpg);">
-                            </a>
-                            <div class="desc">
-                                <p class="admin"><span>18 April 2018</span></p>
-                                <h2><a href="blog.html">Creating Mobile Apps</a></h2>
-                                <p>Far far away, behind the word mountains</p>
-                            </div>
-                        </div>
-                        <div class="f-blog">
-                            <a href="blog.html" class="blog-img"
-                                style="background-image: url(assets/images/blog-3.jpg);">
-                            </a>
-                            <div class="desc">
-                                <p class="admin"><span>18 April 2018</span></p>
-                                <h2><a href="blog.html">Creating Mobile Apps</a></h2>
-                                <p>Far far away, behind the word mountains</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <div class="side">
                         <h3 class="sidbar-heading">Tags</h3>
