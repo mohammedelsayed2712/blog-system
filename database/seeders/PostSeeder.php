@@ -49,7 +49,7 @@ class PostSeeder extends Seeder
         foreach ($posts as $post) {
             DB::table('posts')->insert([
                 'title'       => $post['title'],
-                'slug'        => Str::slug($post['title']),
+                'slug'        => Str::slug($post['title']) . '-' . Str::random(5),
                 'excerpt'     => $post['excerpt'],
                 'body'        => $post['body'],
                 'user_id'     => $userIds[array_rand($userIds)],

@@ -7,8 +7,10 @@
             <div class="col-md-8 posts-col">
                 @foreach ($posts as $post)
                 <div class="block-21 d-flex animate-box post">
-                    <a href="#" class="blog-img"
+                    <a href="#" class="blog-img" {{--
                         style="background-image: url({{ asset('storage/'.  $post->images->path) }});"></a>
+                    --}}
+                    style="background-image: url(assets/images/blog-1.jpg);"></a>
                     <div class="text">
                         <h3 class="heading"><a href="#">{{ $post->title }}</a></h3>
                         <p class="excerpt">{{ $post->excerpt }}</p>
@@ -23,6 +25,7 @@
                     </div>
                 </div>
                 @endforeach
+                {{ $posts->links() }}
             </div>
 
             <!-- SIDEBAR: start -->
@@ -63,12 +66,9 @@
                         <h3 class="sidbar-heading">Tags</h3>
                         <div class="block-26">
                             <ul>
-                                <li><a href="#">code</a></li>
-                                <li><a href="#">design</a></li>
-                                <li><a href="#">typography</a></li>
-                                <li><a href="#">development</a></li>
-                                <li><a href="#">creative</a></li>
-                                <li><a href="#">codehack</a></li>
+                                @foreach ($tags as $tag)
+                                <li><a href="#">{{ $tag->name }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
