@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 
 class HomeController extends Controller
@@ -9,6 +10,8 @@ class HomeController extends Controller
     {
         $posts        = Post::withCount('comments')->get();
         $recent_posts = Post::orderBy('id', 'desc')->take(5)->get();
-        return view('home', compact('posts', 'recent_posts'));
+        $categories   = Category::withCount('posts')->orderBy('posts_count', 'desc')->take(5)->get();
+
+        return view('home', compact('posts', 'recent_posts', 'categories'));
     }
 }
